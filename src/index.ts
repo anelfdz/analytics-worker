@@ -12,6 +12,7 @@ app.use('*', async (c, next) => {
     timestamp: new Date().toISOString(),
     url: c.req.url,
     method: c.req.method,
+    host: c.req.header('host') || 'unknown',
   };
 
   // Log the request information
@@ -21,14 +22,7 @@ app.use('*', async (c, next) => {
   await next();
 });
 
-// Redirect root path
-app.get("/", (c) => {
-  return c.redirect('https://resume-frontend-zj1.pages.dev');
-});
-
-// Redirect all other paths
-app.get("*", (c) => {
-  return c.redirect('https://resume-frontend-zj1.pages.dev');
-});
+// Redirect all paths to the resume frontend
+app.get("/resume", (c) => c.redirect('https://anelfdz.com'));
 
 export default app;
