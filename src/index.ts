@@ -21,7 +21,12 @@ app.use('*', async (c, next) => {
   await next();
 });
 
-// Redirect all requests to the destination
+// Redirect root path
+app.get("/", (c) => {
+  return c.redirect('https://resume-frontend-zj1.pages.dev');
+});
+
+// Redirect all other paths
 app.get("*", (c) => {
   return c.redirect('https://resume-frontend-zj1.pages.dev');
 });
